@@ -9,10 +9,10 @@
   "homepage": "https://open-human-six.vercel.app",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/asepsopiyan/open-human.git"
+    "url": "git+https://github.com/open-human-project/open-human.git"
   },
   "bugs": {
-    "url": "https://github.com/asepsopiyan/open-human/issues"
+    "url": "https://github.com/open-human-project/open-human/issues"
   },
   "packageManager": "npm@11.17.0",
   "scripts": {
