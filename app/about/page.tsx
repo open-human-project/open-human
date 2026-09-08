@@ -6,6 +6,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "About",
   description: "Why Open Human exists and what it is trying to become.",
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {

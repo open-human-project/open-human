@@ -15,7 +15,11 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
   const { category: slug } = await params;
   const category = getCategory(slug);
   if (!category) return {};
-  return { title: category.name, description: category.description };
+  return {
+    title: category.name,
+    description: category.description,
+    alternates: { canonical: `/explore/${category.slug}` },
+  };
 }
 
 export default async function CategoryPage({ params }: { params: Promise<{ category: string }> }) {

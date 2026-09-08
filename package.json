@@ -6,7 +6,7 @@
   "description": "The open-source manual for being human.",
   "author": "Asep Sopiyan",
   "license": "MIT",
-  "homepage": "https://github.com/asepsopiyan/open-human#readme",
+  "homepage": "https://open-human-six.vercel.app",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/asepsopiyan/open-human.git"

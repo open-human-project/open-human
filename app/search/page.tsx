@@ -5,6 +5,7 @@ import { getSearchDocuments } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Search",
   description: "Search Open Human with a concept, pattern, or natural question.",
+  alternates: { canonical: "/search" },
   robots: { index: false, follow: true },
 };
 

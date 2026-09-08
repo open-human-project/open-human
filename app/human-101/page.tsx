@@ -8,6 +8,7 @@ import { getHuman101Concepts } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Human 101",
   description: "A curated path through the essential ideas every human should understand.",
+  alternates: { canonical: "/human-101" },
 };
 
 export default function Human101Page() {

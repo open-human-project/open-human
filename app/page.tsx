@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, BookOpen, GitFork } from "lucide-react";
 import { CategoryGlyph } from "@/components/category-glyph";
@@ -7,6 +8,10 @@ import { SearchForm } from "@/components/search-form";
 import { categories } from "@/lib/categories";
 import { getHuman101Concepts } from "@/lib/content";
 import { siteConfig } from "@/lib/site";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 const sampleQuestions = [
   ["Why is memory unreliable?", "memory"],

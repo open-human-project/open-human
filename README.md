@@ -10,6 +10,8 @@ This repository contains the foundation release: an editorial website, the first
 15 Human 101 concepts, five browsable fields, weighted full-text search, evidence
 profiles, sources, and related-concept navigation.
 
+**Live site:** [open-human-six.vercel.app](https://open-human-six.vercel.app)
+
 ## Run locally
 
 Requirements: Node.js 20.9 or newer and npm.

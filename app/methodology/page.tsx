@@ -5,6 +5,7 @@ import { ArrowRight, CircleHelp, GitPullRequest, Scale, ShieldCheck } from "luci
 export const metadata: Metadata = {
   title: "Methodology",
   description: "How Open Human handles evidence, uncertainty, safety, and revision.",
+  alternates: { canonical: "/methodology" },
 };
 
 const evidenceLevels = [

@@ -9,6 +9,7 @@ import { getAllConcepts, getConceptsByCategory } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Explore the Library",
   description: "Explore Open Human by field, question, or connected concept.",
+  alternates: { canonical: "/explore" },
 };
 
 export default function ExplorePage() {
