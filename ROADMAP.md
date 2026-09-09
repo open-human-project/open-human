@@ -30,7 +30,7 @@ are published editions of that source, not separate knowledge products.
 | --- | --- | --- |
 | v0.1 — Foundation | Editorial site, 15 concepts, evidence model, local search | Shipped |
 | v0.2 — Bilingual foundation | Locale-aware routes, interface dictionaries, localized search | Shipped |
-| v0.3 — Human 101 in Indonesian | All 15 concepts available in `id`; native-language review remains open | Editorial beta |
+| v0.3 — Expanded bilingual Human 101 | 30 concepts, six per field, available in `en` and `id`; native-language review remains open | Editorial beta |
 | v0.4 — Audio pilot | A later bilingual listening pilot after the text library grows | Deferred |
 | v0.5 — Complete foundation audio | Broad bilingual audio coverage | Deferred |
 | v1.0 — Community publishing | Governed translation, narration, and review contributions | Future |
@@ -124,9 +124,11 @@ keeps the equivalent concept, metadata alternates are correct, and searches
 return useful results in both languages. Native-language approval remains the
 editorial gate tracked in v0.3.
 
-## v0.3 — Human 101 in Bahasa Indonesia
+## v0.3 — Expanded bilingual Human 101
 
-- Continue native-language editorial review of all 15 translated concepts in
+- Maintain 30 source/translation pairs across Body, Mind, Self Awareness, Human
+  Nature, and the Dark Library.
+- Continue native-language editorial review of all 30 translated concepts in
   curriculum order and resolve community feedback.
 - Localize About, Methodology, Explore, contribution guidance, and all system UI.
 - Publish and maintain an English–Indonesian terminology glossary.
@@ -185,7 +187,7 @@ high-value articles in both `en` and `id`; the initial set is not committed yet.
 
 ## v0.5 — Complete foundation audio
 
-- Publish reviewed audio for all 15 Human 101 concepts in both languages.
+- Publish reviewed audio for the stable Human 101 text collection in both languages.
 - Automate text-revision checks, generation queues, quality review, and asset
   publication without making deployments depend on a text-to-speech provider.
 - Add optional downloads only after bandwidth, licensing, and offline behavior

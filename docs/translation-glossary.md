@@ -23,21 +23,43 @@ priority over matching English word order.
 | evidence | bukti | Use *tingkat bukti* for the A–E scale. |
 | confidence | tingkat keyakinan | Refers to how firmly a conclusion can be stated, not self-confidence. |
 | uncertainty | ketidakpastian | Keep explicit; do not soften or remove it. |
+| association | berkaitan dengan | Do not strengthen an association into *menyebabkan*. |
+| causation | hubungan sebab-akibat / menyebabkan | Use only when the design and source support a causal claim. |
 | attention | perhatian | Use *atensi* only when a cited technical distinction requires it. |
+| perception as inference | persepsi sebagai inferensi | Explain *inferensi* as using sensory evidence plus prior knowledge; do not imply that reality is invented. |
+| working memory | memori kerja | Avoid *ingatan kerja* unless a source uses it for a distinct construct. |
+| cognitive load | beban kognitif | Explain through the limits of attention or working memory where helpful. |
 | reconstructive memory | ingatan yang bersifat rekonstruktif | *Ingatan rekonstruktif* is acceptable in compact labels. |
 | confirmation bias | bias konfirmasi | Avoid translating *bias* as prejudice when the cognitive meaning is intended. |
+| habit / automaticity | kebiasaan / otomatisitas | A habit is a context-linked response tendency, not a permanent identity. |
 | appraisal | penilaian | In emotion research, explain that this means evaluating what an event signifies. |
 | metacognition | metakognisi | Explain on first use as monitoring and regulating one's own thinking. |
+| emotion regulation | regulasi emosi | Means shaping an emotional process toward a goal, not erasing emotion. |
+| expressive suppression | penekanan ekspresi emosi | Distinguish outward expression from the internal emotional experience. |
+| rumination | ruminasi | Explain on first use as repetitive thought that is difficult to disengage from. |
 | impulse | dorongan | Use *impuls* only when discussing a narrower clinical or technical term. |
+| avoidance | penghindaran | Preserve the distinction between adaptive protection and costly habitual avoidance. |
+| negative reinforcement | penguatan negatif | Explain that removing an unpleasant state increases a behavior; it is not punishment. |
 | conformity | konformitas | Explain as adjusting judgment or behavior toward a group. |
 | reciprocity | resiprositas | Pair with an explanation about responding to help, harm, or obligation. |
 | status | status / kedudukan relatif | Choose the longer form when rank or social standing could be ambiguous. |
+| social identity | identitas sosial | Explain as the group-based part of a person's working sense of self. |
+| social dilemma | dilema sosial | A situation where individually tempting choices can produce a worse collective outcome. |
+| collective action | tindakan kolektif | Use for coordinated contribution toward a shared outcome, not merely any group activity. |
+| cooperation | kerja sama | Keep separate from two-person reciprocity and from moral claims about goodness. |
+| competition | persaingan | Use *kompetisi* in aliases when it improves discoverability. |
 | groupthink | pemikiran kelompok (*groupthink*) | Keep the English term on first use because it is common in the literature. |
 | manipulation | manipulasi | Preserve the distinction from transparent persuasion. |
+| scam / social engineering | penipuan / rekayasa sosial | Prefer *penipuan* in reader-facing prose; explain the technical term on first use. |
+| propaganda | propaganda | Treat as organized influence on an information environment, not as a synonym for every false claim. |
+| dehumanization | dehumanisasi | Explain as denying or diminishing human qualities; do not imply that it automatically causes violence. |
 | coercive control | kontrol koersif | Explain as a pattern of domination, not a single disagreement. |
 | homeostatic sleep pressure | tekanan tidur homeostatik | A biological drive that generally builds while awake. |
 | circadian timing | pengaturan waktu sirkadian | Use *ritme sirkadian* when referring to the broader recurring rhythm. |
 | energy balance | keseimbangan energi | Never use it as a moral judgment about body weight. |
+| dietary pattern | pola makan | Refers to the recurring combination and proportions of foods and drinks, not a short-term diet plan. |
+| fluid balance | keseimbangan cairan | Avoid presenting one intake target as universal. |
+| allostasis / allostatic load | alostasis / beban alostatik | Explain both terms in plain language on first use; do not present them as a personal diagnostic score. |
 | progressive overload | beban progresif | Explain on first use as adjusting demands gradually as capacity changes. |
 
 ## Translation review

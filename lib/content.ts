@@ -302,8 +302,12 @@ export function validateContentGraph(locale: Locale) {
       errors.push(`${locale}/${concept.slug}: duplicate heading anchor`);
     }
 
-    if (!concept.sources.some((source) => concept.content.includes(source.url))) {
-      errors.push(`${locale}/${concept.slug}: no listed source is cited in the article body`);
+    for (const source of concept.sources) {
+      if (!concept.content.includes(source.url)) {
+        errors.push(
+          `${locale}/${concept.slug}: listed source is not cited in the article body: ${source.url}`,
+        );
+      }
     }
   }
 
@@ -313,6 +317,11 @@ export function validateContentGraph(locale: Locale) {
   const duplicates = orders.filter((order, index) => orders.indexOf(order) !== index);
   if (duplicates.length) {
     errors.push(`${locale}: duplicate Human 101 order: ${[...new Set(duplicates)].join(", ")}`);
+  }
+  const orderedValues = [...orders].sort((a, b) => a - b);
+  const expectedValues = Array.from({ length: orders.length }, (_, index) => index + 1);
+  if (JSON.stringify(orderedValues) !== JSON.stringify(expectedValues)) {
+    errors.push(`${locale}: Human 101 order must be continuous from 1`);
   }
 
   return errors;

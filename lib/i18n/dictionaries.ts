@@ -141,7 +141,7 @@ const en = {
     intro:
       "If you learn nothing else about being human, start here: a careful sequence of ideas about the organism, the interpreter, and the social world.",
     begin: "Begin with concept 01",
-    releaseConcepts: "concepts in release 0.1",
+    releaseConcepts: "concepts in this curriculum",
     fields: "fields of understanding",
     evidenceLevels: "visible evidence levels",
     path: "The path",
@@ -476,7 +476,7 @@ const id: Dictionary = {
     intro:
       "Jika Anda hanya mempelajari beberapa hal tentang menjadi manusia, mulailah di sini: urutan gagasan yang disusun dengan hati-hati tentang organisme, penafsir, dan dunia sosial.",
     begin: "Mulai dari konsep 01",
-    releaseConcepts: "konsep dalam rilis 0.1",
+    releaseConcepts: "konsep dalam kurikulum ini",
     fields: "bidang pemahaman",
     evidenceLevels: "tingkat bukti yang dinyatakan jelas",
     path: "Jalur belajar",

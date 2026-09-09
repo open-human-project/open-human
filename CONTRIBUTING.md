@@ -33,7 +33,7 @@ difficulty: foundational
 evidence_level: A
 confidence: high
 last_reviewed: "2026-09-09"
-human_101_order: 4
+human_101_order: 11
 related: [attention, metacognition]
 sources:
   - title: "Source title"
@@ -62,6 +62,12 @@ Human 101 order, related concept IDs, and supporting source URLs must remain
 aligned with the English source. If `content_revision` changes, update and review
 the translation before advancing its `source_revision`.
 
+Increment `content_revision` whenever reader-facing English prose or knowledge
+metadata changes, including titles, descriptions, evidence labels, source records,
+curriculum order, and related concepts. Code-only changes do not require a content
+revision. Advance an edition's `source_revision` only after its prose, metadata,
+links, caveats, and safety framing have been checked against that English revision.
+
 Use the [English–Indonesian editorial glossary](./docs/translation-glossary.md)
 for recurring terms and update it deliberately when a better convention emerges.
 
@@ -85,7 +91,8 @@ The level summarizes the page; it does not replace citations for material claims
 
 - Run `npm test`, `npm run typecheck`, `npm run lint`, and `npm run build`.
 - Confirm every related slug exists and the relationship makes conceptual sense.
-- Open every new source and confirm it supports the nearby claim.
+- Open every new source, cite it in the article body, and confirm it supports the
+  nearby claim.
 - State important uncertainty, variation, and counterevidence.
 - Use calm, direct language without sensationalism or motivational promises.
 - Check the article at narrow and wide viewport sizes.

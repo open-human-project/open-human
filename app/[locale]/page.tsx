@@ -28,7 +28,24 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
   const copy = dictionary.home;
   const categories = getCategories(locale);
   const human101 = getHuman101Concepts(locale);
-  const featured = human101.slice(0, 4);
+  const conceptsBySlug = new Map(human101.map((concept) => [concept.slug, concept]));
+  const selectConcepts = (slugs: string[]) =>
+    slugs.map((slug) => {
+      const concept = conceptsBySlug.get(slug);
+      if (!concept) throw new Error(`Homepage selection references missing concept: ${slug}`);
+      return concept;
+    });
+  const featured = selectConcepts([
+    "sleep",
+    "perception-is-inference",
+    "event-and-interpretation",
+    "social-identity",
+  ]);
+  const librarySelections = selectConcepts([
+    "nutrition-patterns",
+    "emotion-regulation",
+    "cooperation-and-collective-action",
+  ]);
   const contributionHref =
     siteConfig.repositoryUrl ?? localizedPath(locale, "/about#contribute");
 
@@ -142,7 +159,7 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
           <div className="preview-list">
             {featured.map((concept, index) => (
               <Link href={localizedPath(locale, `/concepts/${concept.slug}`)} key={concept.slug}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
+                <span>{String(concept.human_101_order ?? index + 1).padStart(2, "0")}</span>
                 <div>
                   <small>{categories.find((category) => category.slug === concept.category)?.name}</small>
                   <strong>{concept.title}</strong>
@@ -167,7 +184,7 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
             </Link>
           </div>
           <div className="concept-card-grid">
-            {human101.slice(4, 7).map((concept) => (
+            {librarySelections.map((concept) => (
               <ConceptCard concept={concept} locale={locale} key={concept.slug} />
             ))}
           </div>

@@ -6,10 +6,10 @@ Open Human is an evidence-aware knowledge library for understanding the body,
 mind, behavior, and systems around us. It teaches understanding rather than
 obedience and keeps sources, uncertainty, and competing interpretations visible.
 
-This repository contains the bilingual foundation release: an editorial website,
-15 Human 101 concepts in English and Bahasa Indonesia, five browsable fields,
-locale-specific weighted search, evidence profiles, sources, and related-concept
-navigation.
+This repository contains the expanded bilingual foundation: an editorial website,
+30 Human 101 concepts in English and Bahasa Indonesia, six concepts in each of
+five browsable fields, locale-specific weighted search, evidence profiles,
+sources, and related-concept navigation.
 
 **Live site:** [open-human-six.vercel.app](https://open-human-six.vercel.app)
 
