@@ -1,3 +1,5 @@
+import type { Locale } from "@/lib/i18n/config";
+
 export const evidenceLevels = ["A", "B", "C", "D", "E"] as const;
 export type EvidenceLevel = (typeof evidenceLevels)[number];
 
@@ -20,6 +22,13 @@ export type Source = {
 };
 
 export type ConceptFrontmatter = {
+  locale: Locale;
+  content_revision?: number;
+  translation_of?: string;
+  translation_status?: "draft" | "review" | "published";
+  source_revision?: number;
+  translation_method?: "human" | "ai-assisted";
+  translation_reviewed_at?: string;
   title: string;
   description: string;
   category: CategorySlug;

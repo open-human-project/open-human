@@ -1,16 +1,19 @@
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, ArrowUpRight, BookOpen, CalendarDays, ChevronDown, Github } from "lucide-react";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { EvidenceBadge, evidenceLabels } from "@/components/evidence-badge";
+import { EvidenceBadge } from "@/components/evidence-badge";
 import { getCategory } from "@/lib/categories";
 import { getHuman101Concepts, getRelatedConcepts } from "@/lib/content";
+import { localizedPath, type Locale } from "@/lib/i18n/config";
+import { getDictionary } from "@/lib/i18n/dictionaries";
 import { siteConfig } from "@/lib/site";
 import type { Concept } from "@/lib/types";
 
 function headingId(value: React.ReactNode) {
   return String(value)
     .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, "")
+    .normalize("NFKD")
+    .replace(/[^\p{L}\p{N}\s-]/gu, "")
     .trim()
     .replace(/\s+/g, "-");
 }
@@ -39,25 +42,33 @@ const mdxComponents = {
   },
 };
 
-export function KnowledgeArticle({ concept }: { concept: Concept }) {
-  const category = getCategory(concept.category)!;
+export function KnowledgeArticle({ concept, locale }: { concept: Concept; locale: Locale }) {
+  const dictionary = getDictionary(locale);
+  const copy = dictionary.article;
+  const category = getCategory(locale, concept.category)!;
   const headings = getHeadings(concept.content);
-  const related = getRelatedConcepts(concept);
-  const curriculum = getHuman101Concepts();
+  const related = getRelatedConcepts(locale, concept);
+  const curriculum = getHuman101Concepts(locale);
   const curriculumIndex = curriculum.findIndex((item) => item.slug === concept.slug);
   const previous = curriculumIndex > 0 ? curriculum[curriculumIndex - 1] : undefined;
   const next = curriculumIndex >= 0 ? curriculum[curriculumIndex + 1] : undefined;
+  const dateFormatter = new Intl.DateTimeFormat(locale === "id" ? "id-ID" : "en-US", {
+    dateStyle: "medium",
+  });
+  const formattedLastReviewed = dateFormatter.format(
+    new Date(`${concept.last_reviewed}T12:00:00Z`),
+  );
   const contributionUrl = siteConfig.repositoryUrl
-    ? `${siteConfig.repositoryUrl}/edit/main/content/en/${concept.category}/${concept.slug}.mdx`
-    : "/about#contribute";
+    ? `${siteConfig.repositoryUrl}/edit/main/content/${locale}/${concept.category}/${concept.slug}.mdx`
+    : localizedPath(locale, "/about#contribute");
 
   return (
     <article>
       <header className="article-hero">
         <div className="shell article-breadcrumb">
-          <Link href="/explore">Library</Link>
+          <Link href={localizedPath(locale, "/explore")}>{copy.library}</Link>
           <span>/</span>
-          <Link href={`/explore/${category.slug}`}>{category.name}</Link>
+          <Link href={localizedPath(locale, `/explore/${category.slug}`)}>{category.name}</Link>
           <span>/</span>
           <span>{concept.title}</span>
         </div>
@@ -76,22 +87,22 @@ export function KnowledgeArticle({ concept }: { concept: Concept }) {
             <p>{concept.description}</p>
           </div>
           <div className="article-meta-summary">
-            <EvidenceBadge level={concept.evidence_level} detailed />
+            <EvidenceBadge level={concept.evidence_level} locale={locale} detailed />
             <div>
-              <span>Reading time</span>
-              <strong>{concept.readingMinutes} minutes</strong>
+              <span>{copy.readingTime}</span>
+              <strong>{concept.readingMinutes} {dictionary.common.minutes}</strong>
             </div>
             <div>
-              <span>Difficulty</span>
-              <strong>{concept.difficulty}</strong>
+              <span>{copy.difficulty}</span>
+              <strong>{copy.difficultyLabels[concept.difficulty]}</strong>
             </div>
           </div>
         </div>
       </header>
 
       <div className="shell article-layout">
-        <aside className="article-toc" aria-label="On this page">
-          <p>On this page</p>
+        <aside className="article-toc" aria-label={copy.onThisPage}>
+          <p>{copy.onThisPage}</p>
           <ol>
             {headings.map((heading, index) => (
               <li key={heading.id}>
@@ -107,7 +118,7 @@ export function KnowledgeArticle({ concept }: { concept: Concept }) {
         <div className="article-main">
           <details className="mobile-article-toc">
             <summary>
-              <span>On this page · {headings.length} sections</span>
+              <span>{copy.onThisPage} · {headings.length} {copy.sections}</span>
               <ChevronDown size={17} />
             </summary>
             <ol>
@@ -123,20 +134,28 @@ export function KnowledgeArticle({ concept }: { concept: Concept }) {
           </details>
           {concept.category === "body" && (
             <div className="safety-note">
-              <strong>Health context</strong>
-              <p>
-                This page is general education, not medical advice or diagnosis.
-                Individual needs and clinical situations vary.
-              </p>
+              <strong>{copy.healthTitle}</strong>
+              <p>{copy.healthDescription}</p>
             </div>
           )}
           {concept.category === "dark-library" && (
             <div className="safety-note dark-note">
-              <strong>Defensive understanding</strong>
-              <p>
-                This page explains harmful influence so it is easier to recognize
-                and resist—not to make exploitation easier.
-              </p>
+              <strong>{copy.defenseTitle}</strong>
+              <p>{copy.defenseDescription}</p>
+            </div>
+          )}
+          {locale === "id" && (
+            <div className="safety-note translation-note">
+              <strong>{copy.translationNoteTitle}</strong>
+              <p>{copy.translationNote}</p>
+              {concept.translation_reviewed_at && (
+                <small>
+                  {copy.translationReviewed}:{" "}
+                  {dateFormatter.format(
+                    new Date(`${concept.translation_reviewed_at}T12:00:00Z`),
+                  )}
+                </small>
+              )}
             </div>
           )}
           <div className="article-body">
@@ -145,36 +164,35 @@ export function KnowledgeArticle({ concept }: { concept: Concept }) {
 
           <section className="evidence-panel" aria-labelledby="evidence-heading">
             <div className="evidence-panel-heading">
-              <p className="eyebrow">Evidence profile</p>
-              <h2 id="evidence-heading">How certain is this?</h2>
+              <p className="eyebrow">{copy.evidenceProfile}</p>
+              <h2 id="evidence-heading">{copy.certaintyTitle}</h2>
             </div>
             <div className="evidence-facts">
               <div>
-                <span>Overall evidence</span>
-                <strong>Level {concept.evidence_level} · {evidenceLabels[concept.evidence_level]}</strong>
+                <span>{copy.overallEvidence}</span>
+                <strong>{copy.level} {concept.evidence_level} · {dictionary.evidence.labels[concept.evidence_level]}</strong>
               </div>
               <div>
-                <span>Confidence</span>
-                <strong>{concept.confidence}</strong>
+                <span>{copy.confidence}</span>
+                <strong>{copy.confidenceLabels[concept.confidence]}</strong>
               </div>
               <div>
-                <span>Last reviewed</span>
-                <strong>{new Intl.DateTimeFormat("en", { dateStyle: "medium" }).format(new Date(`${concept.last_reviewed}T12:00:00Z`))}</strong>
+                <span>{copy.lastReviewed}</span>
+                <strong>{formattedLastReviewed}</strong>
               </div>
             </div>
             <p className="evidence-caveat">
-              This is a page-level evidence profile, not a claim that every study
-              agrees. Follow the sources and examine important claims directly.
+              {copy.evidenceCaveat}
             </p>
           </section>
 
           <section className="sources-section" aria-labelledby="sources-heading">
             <div className="sources-heading">
               <div>
-                <p className="eyebrow">Return to the evidence</p>
-                <h2 id="sources-heading">Sources</h2>
+                <p className="eyebrow">{copy.returnEvidence}</p>
+                <h2 id="sources-heading">{copy.sources}</h2>
               </div>
-              <span>{concept.sources.length} references</span>
+              <span>{concept.sources.length} {copy.references}</span>
             </div>
             <ol>
               {concept.sources.map((source, index) => (
@@ -194,13 +212,13 @@ export function KnowledgeArticle({ concept }: { concept: Concept }) {
           </section>
 
           <div className="article-review-line">
-            <span><CalendarDays size={14} /> Reviewed {concept.last_reviewed}</span>
+            <span><CalendarDays size={14} /> {copy.reviewed} {formattedLastReviewed}</span>
             <a
               href={contributionUrl}
               target={siteConfig.repositoryUrl ? "_blank" : undefined}
               rel={siteConfig.repositoryUrl ? "noreferrer" : undefined}
             >
-              <Github size={14} /> Improve this page
+              <Github size={14} /> {copy.improve}
             </a>
           </div>
         </div>
@@ -210,16 +228,16 @@ export function KnowledgeArticle({ concept }: { concept: Concept }) {
         <div className="shell">
           <div className="section-heading split-heading">
             <div>
-              <p className="section-number">Continue exploring</p>
-              <h2>Related concepts</h2>
+              <p className="section-number">{copy.continue}</p>
+              <h2>{copy.related}</h2>
             </div>
-            <p>Knowledge becomes more useful when the connections become visible.</p>
+            <p>{copy.relatedDescription}</p>
           </div>
           <div className="related-grid">
             {related.map((item, index) => (
-              <Link href={`/concepts/${item.slug}`} key={item.slug}>
+              <Link href={localizedPath(locale, `/concepts/${item.slug}`)} key={item.slug}>
                 <span>{String(index + 1).padStart(2, "0")}</span>
-                <small>{getCategory(item.category)?.name}</small>
+                <small>{getCategory(locale, item.category)?.name}</small>
                 <strong>{item.title}</strong>
                 <p>{item.description}</p>
                 <ArrowUpRight size={18} strokeWidth={1.4} />
@@ -230,16 +248,16 @@ export function KnowledgeArticle({ concept }: { concept: Concept }) {
       </section>
 
       {(previous || next) && (
-        <nav className="curriculum-nav shell" aria-label="Human 101 curriculum navigation">
+        <nav className="curriculum-nav shell" aria-label={copy.curriculumNav}>
           {previous ? (
-            <Link href={`/concepts/${previous.slug}`} className="previous">
+            <Link href={localizedPath(locale, `/concepts/${previous.slug}`)} className="previous">
               <ArrowLeft size={18} />
-              <span><small>Previous in Human 101</small><strong>{previous.title}</strong></span>
+              <span><small>{copy.previous}</small><strong>{previous.title}</strong></span>
             </Link>
           ) : <span />}
           {next ? (
-            <Link href={`/concepts/${next.slug}`} className="next">
-              <span><small>Next in Human 101</small><strong>{next.title}</strong></span>
+            <Link href={localizedPath(locale, `/concepts/${next.slug}`)} className="next">
+              <span><small>{copy.next}</small><strong>{next.title}</strong></span>
               <ArrowRight size={18} />
             </Link>
           ) : <span />}

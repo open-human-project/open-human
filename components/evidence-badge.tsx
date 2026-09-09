@@ -1,20 +1,21 @@
+import type { Locale } from "@/lib/i18n/config";
+import { getDictionary } from "@/lib/i18n/dictionaries";
 import type { EvidenceLevel } from "@/lib/types";
 
-const labels: Record<EvidenceLevel, string> = {
-  A: "Strong evidence",
-  B: "Good evidence",
-  C: "Emerging / mixed",
-  D: "Hypothesis",
-  E: "Interpretive",
-};
-
-export function EvidenceBadge({ level, detailed = false }: { level: EvidenceLevel; detailed?: boolean }) {
+export function EvidenceBadge({
+  level,
+  locale,
+  detailed = false,
+}: {
+  level: EvidenceLevel;
+  locale: Locale;
+  detailed?: boolean;
+}) {
+  const copy = getDictionary(locale).evidence;
   return (
     <span className={`evidence-badge level-${level.toLowerCase()}`}>
       <span aria-hidden="true">{level}</span>
-      {detailed ? labels[level] : `Evidence ${level}`}
+      {detailed ? copy.labels[level] : `${copy.short} ${level}`}
     </span>
   );
 }
-
-export const evidenceLabels = labels;

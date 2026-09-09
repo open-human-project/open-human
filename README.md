@@ -6,9 +6,10 @@ Open Human is an evidence-aware knowledge library for understanding the body,
 mind, behavior, and systems around us. It teaches understanding rather than
 obedience and keeps sources, uncertainty, and competing interpretations visible.
 
-This repository contains the foundation release: an editorial website, the first
-15 Human 101 concepts, five browsable fields, weighted full-text search, evidence
-profiles, sources, and related-concept navigation.
+This repository contains the bilingual foundation release: an editorial website,
+15 Human 101 concepts in English and Bahasa Indonesia, five browsable fields,
+locale-specific weighted search, evidence profiles, sources, and related-concept
+navigation.
 
 **Live site:** [open-human-six.vercel.app](https://open-human-six.vercel.app)
 
@@ -22,7 +23,8 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000). The root selects `/en` or
+`/id` from the saved language preference and browser settings.
 
 ## Quality checks
 
@@ -33,18 +35,22 @@ npm test
 npm run build
 ```
 
-The content test verifies the curriculum order, metadata schema, public category
-coverage, related-concept links, and representative natural-language searches.
+The tests verify both curricula, translation/source revision parity, metadata,
+public category coverage, related-concept links, locale routing, and
+representative natural-language searches in both languages.
 
 ## Structure
 
 ```text
-app/                 Next.js App Router pages and global design system
-components/          Editorial, discovery, search, and article components
-content/en/           Markdown/MDX knowledge source of truth
-lib/content.ts        Schema validation and content repository
-lib/search.ts         Static weighted search adapter
-tests/                Content and discovery contract tests
+app/[locale]/         Locale-prefixed Next.js App Router pages
+components/           Editorial, discovery, search, and article components
+content/en/           English Markdown/MDX source editions
+content/id/           Indonesian Markdown/MDX localized editions
+lib/i18n/             Locale configuration and interface dictionaries
+lib/content.ts        Schema, graph, and cross-language parity validation
+lib/search.ts         Locale-aware static weighted search adapter
+proxy.ts              Root negotiation and legacy URL redirects
+tests/                Content, discovery, and locale-routing contract tests
 ```
 
 Content is deliberately static-first. There is no database, authentication, CMS,
@@ -67,15 +73,21 @@ The deployed site should set both values.
 - Evidence first. Show sources, confidence, review dates, and uncertainty.
 - Defensive understanding. Dark patterns are taught for recognition and resistance.
 - No diagnosis. Health content is education, not individual medical care.
+- Translate meaning rather than words. Localized prose should sound natural while
+  preserving claims, evidence, uncertainty, safety framing, and source URLs.
+- Track every localized edition against its English source revision and disclose
+  AI assistance when it is used.
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) before proposing knowledge changes.
+Translation contributors should also follow the
+[English–Indonesian editorial glossary](./docs/translation-glossary.md).
 
 ## Roadmap
 
-The next product track adds locale-aware publishing with Bahasa Indonesia as the
-first language after English, followed by reviewed audio editions for both
-languages. See [ROADMAP.md](./ROADMAP.md) for sequencing, content governance,
-accessibility requirements, and release criteria.
+Locale-aware publishing is now implemented with Bahasa Indonesia as the first
+language after English. Reviewed audio editions remain a later track, after the
+text library has grown. See [ROADMAP.md](./ROADMAP.md) for content governance and
+future release criteria.
 
 ## License
 

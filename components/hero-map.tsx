@@ -1,7 +1,11 @@
-export function HeroMap() {
+import { getDictionary } from "@/lib/i18n/dictionaries";
+import type { Locale } from "@/lib/i18n/config";
+
+export function HeroMap({ locale }: { locale: Locale }) {
+  const copy = getDictionary(locale).heroMap;
   return (
-    <div className="hero-map" aria-label="A map connecting body, mind, awareness, and society">
-      <svg viewBox="0 0 520 520" role="img" aria-hidden="true">
+    <div className="hero-map" role="img" aria-label={copy.label}>
+      <svg viewBox="0 0 520 520" aria-hidden="true">
         <g className="map-lines">
           <path d="M260 260 132 138M260 260l149-104M260 260l-133 135M260 260l150 112" />
           <path d="M132 138 409 156M127 395l283-23M132 138l-5 257M409 156l1 216" />
@@ -29,12 +33,12 @@ export function HeroMap() {
           <circle cx="410" cy="372" r="4" className="node-dot" />
         </g>
       </svg>
-      <span className="map-label label-self">Self</span>
-      <span className="map-label label-body">Body</span>
-      <span className="map-label label-mind">Mind</span>
-      <span className="map-label label-nature">Nature</span>
-      <span className="map-label label-systems">Systems</span>
-      <p className="map-caption">A small map of a very large subject.</p>
+      <span className="map-label label-self">{copy.nodes[0]}</span>
+      <span className="map-label label-body">{copy.nodes[1]}</span>
+      <span className="map-label label-mind">{copy.nodes[2]}</span>
+      <span className="map-label label-nature">{copy.nodes[3]}</span>
+      <span className="map-label label-systems">{copy.nodes[4]}</span>
+      <p className="map-caption">{copy.caption}</p>
     </div>
   );
 }

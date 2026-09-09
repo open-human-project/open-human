@@ -4,28 +4,38 @@ import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight, Search, SlidersHorizontal, X } from "lucide-react";
 import { EvidenceBadge } from "@/components/evidence-badge";
-import { categories, getCategory } from "@/lib/categories";
+import type { Category } from "@/lib/categories";
+import { localizedPath, type Locale } from "@/lib/i18n/config";
+import type { Dictionary } from "@/lib/i18n/dictionaries";
 import { rankSearchDocuments } from "@/lib/search";
 import type { CategorySlug, SearchDocument } from "@/lib/types";
 
 export function SearchInterface({
+  categories,
+  copy,
   documents,
   initialQuery,
+  locale,
 }: {
+  categories: Category[];
+  copy: Dictionary["search"];
   documents: SearchDocument[];
   initialQuery: string;
+  locale: Locale;
 }) {
   const [query, setQuery] = useState(initialQuery);
   const [category, setCategory] = useState<"all" | CategorySlug>("all");
   const restoredSession = useRef(false);
   const deferredQuery = useDeferredValue(query);
+  const queryKey = `open-human:search-query:${locale}`;
+  const categoryKey = `open-human:search-category:${locale}`;
 
   useEffect(() => {
     let storedQuery: string | null = null;
     let storedCategory: string | null = null;
     try {
-      storedQuery = window.sessionStorage.getItem("open-human:search-query");
-      storedCategory = window.sessionStorage.getItem("open-human:search-category");
+      storedQuery = window.sessionStorage.getItem(queryKey);
+      storedCategory = window.sessionStorage.getItem(categoryKey);
     } catch {
       // Search still works when browser storage is unavailable.
     }
@@ -39,7 +49,6 @@ export function SearchInterface({
     const frame = window.requestAnimationFrame(() => {
       if (hashQuery) {
         setQuery(hashQuery);
-        window.history.replaceState(null, "", window.location.pathname);
       } else if (storedQuery) {
         setQuery(storedQuery);
       }
@@ -51,58 +60,64 @@ export function SearchInterface({
     });
 
     return () => window.cancelAnimationFrame(frame);
-  }, []);
+  }, [categories, categoryKey, queryKey]);
 
   useEffect(() => {
     if (!restoredSession.current) return;
     try {
-      window.sessionStorage.setItem("open-human:search-query", query);
-      window.sessionStorage.setItem("open-human:search-category", category);
+      window.sessionStorage.setItem(queryKey, query);
+      window.sessionStorage.setItem(categoryKey, category);
     } catch {
       // Storage is an enhancement, not a requirement for local search.
     }
-  }, [query, category]);
+
+    const nextHash = query.trim() ? `#${encodeURIComponent(query.trim())}` : "";
+    const nextUrl = `${window.location.pathname}${window.location.search}${nextHash}`;
+    const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+    if (nextUrl !== currentUrl) {
+      window.history.replaceState(null, "", nextUrl);
+      window.dispatchEvent(new Event("open-human:url-change"));
+    }
+  }, [category, categoryKey, query, queryKey]);
 
   const results = useMemo(() => {
-    return rankSearchDocuments(documents, deferredQuery, category);
-  }, [documents, deferredQuery, category]);
+    return rankSearchDocuments(documents, deferredQuery, locale, category);
+  }, [category, deferredQuery, documents, locale]);
 
   return (
     <div className="search-interface">
       <div className="search-page-field">
         <Search size={21} strokeWidth={1.5} aria-hidden="true" />
         <label className="sr-only" htmlFor="library-search">
-          Search the library
+          {copy.inputLabel}
         </label>
         <input
           id="library-search"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
-          placeholder="Try “Why do people follow groups?”"
+          placeholder={copy.placeholder}
           autoFocus={Boolean(initialQuery)}
         />
         {query && (
-          <button type="button" onClick={() => setQuery("")} aria-label="Clear search">
+          <button type="button" onClick={() => setQuery("")} aria-label={copy.clear}>
             <X size={18} />
           </button>
         )}
       </div>
-      <p className="search-privacy-note">
-        Search runs locally and is kept only for this browser tab. Your question is not sent to an external search service.
-      </p>
+      <p className="search-privacy-note">{copy.privacy}</p>
 
       <div className="search-tools">
         <div className="search-filter-label">
-          <SlidersHorizontal size={14} /> Filter by field
+          <SlidersHorizontal size={14} /> {copy.filter}
         </div>
-        <div className="filter-pills" role="group" aria-label="Filter search by field">
+        <div className="filter-pills" role="group" aria-label={copy.filterAria}>
           <button
             type="button"
             className={category === "all" ? "active" : ""}
             aria-pressed={category === "all"}
             onClick={() => setCategory("all")}
           >
-            All
+            {copy.all}
           </button>
           {categories.map((item) => (
             <button
@@ -122,10 +137,12 @@ export function SearchInterface({
         <p>
           {query.trim() ? (
             <>
-              {results.length} {results.length === 1 ? "concept" : "concepts"} for <strong>“{query}”</strong>
+              {results.length}{" "}
+              {results.length === 1 ? copy.resultSingular : copy.resultPlural}{" "}
+              {copy.resultFor} <strong>“{query}”</strong>
             </>
           ) : (
-            <>Browse all {results.length} concepts</>
+            <>{copy.browseAll} {results.length} {copy.resultPlural}</>
           )}
         </p>
       </div>
@@ -133,9 +150,12 @@ export function SearchInterface({
       {results.length ? (
         <div className="search-results">
           {results.map(({ document }, index) => {
-            const itemCategory = getCategory(document.category);
+            const itemCategory = categories.find((item) => item.slug === document.category);
             return (
-              <Link href={`/concepts/${document.slug}`} key={document.slug}>
+              <Link
+                href={localizedPath(locale, `/concepts/${document.slug}`)}
+                key={document.slug}
+              >
                 <span className="search-result-index">{String(index + 1).padStart(2, "0")}</span>
                 <span className="search-result-main">
                   <span className="search-result-category">{itemCategory?.name}</span>
@@ -148,8 +168,8 @@ export function SearchInterface({
                   </span>
                 </span>
                 <span className="search-result-side">
-                  <EvidenceBadge level={document.evidence_level} />
-                  <span>{document.readingMinutes} min read</span>
+                  <EvidenceBadge level={document.evidence_level} locale={locale} />
+                  <span>{document.readingMinutes} {copy.minRead}</span>
                 </span>
                 <ArrowUpRight size={19} strokeWidth={1.4} />
               </Link>
@@ -158,13 +178,10 @@ export function SearchInterface({
         </div>
       ) : (
         <div className="search-zero">
-          <p className="eyebrow">No exact path found</p>
-          <h2>Try a broader idea.</h2>
-          <p>
-            Search for a single concept like “memory,” “status,” “sleep,” or
-            “manipulation.” The library is still growing.
-          </p>
-          <button type="button" onClick={() => setQuery("")}>Browse every concept</button>
+          <p className="eyebrow">{copy.noResultEyebrow}</p>
+          <h2>{copy.noResultTitle}</h2>
+          <p>{copy.noResultDescription}</p>
+          <button type="button" onClick={() => setQuery("")}>{copy.browseEvery}</button>
         </div>
       )}
     </div>

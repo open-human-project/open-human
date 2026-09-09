@@ -13,8 +13,9 @@ are published editions of that source, not separate knowledge products.
   additional language and uses the BCP 47 locale code `id`.
 - Every language gets a stable, explicit URL. English and Indonesian content
   must never be mixed silently on one localized page.
-- Machine assistance may accelerate translation or narration, but nothing is
-  published without human editorial review.
+- Machine assistance may accelerate translation or narration, but its use must
+  be disclosed and the result independently checked against the source. Native
+  human review is required before an edition leaves editorial beta.
 - Audio is optional, never autoplayed, and always accompanied by an equivalent
   text version.
 - Evidence level, uncertainty, safety framing, citations, and review history
@@ -28,10 +29,10 @@ are published editions of that source, not separate knowledge products.
 | Milestone | Outcome | Status |
 | --- | --- | --- |
 | v0.1 — Foundation | Editorial site, 15 concepts, evidence model, local search | Shipped |
-| v0.2 — Bilingual foundation | Locale-aware routes, interface dictionaries, Indonesian pilot | Next |
-| v0.3 — Human 101 in Indonesian | All 15 foundation concepts reviewed in `id` | Planned |
-| v0.4 — Audio pilot | Three concepts available in English and Indonesian audio | Planned |
-| v0.5 — Complete foundation audio | All Human 101 concepts available in both languages | Planned |
+| v0.2 — Bilingual foundation | Locale-aware routes, interface dictionaries, localized search | Shipped |
+| v0.3 — Human 101 in Indonesian | All 15 concepts available in `id`; native-language review remains open | Editorial beta |
+| v0.4 — Audio pilot | A later bilingual listening pilot after the text library grows | Deferred |
+| v0.5 — Complete foundation audio | Broad bilingual audio coverage | Deferred |
 | v1.0 — Community publishing | Governed translation, narration, and review contributions | Future |
 
 ## v0.2 — Bilingual foundation
@@ -79,7 +80,7 @@ locale: id
 translation_of: sleep
 translation_status: published
 source_revision: <content revision>
-translated_by: <name or contributor handle>
+translation_method: ai-assisted # or human
 translation_reviewed_at: "YYYY-MM-DD"
 ```
 
@@ -93,8 +94,8 @@ Human 101 ordering.
 2. Draft the Indonesian edition using a shared terminology glossary.
 3. Review it for meaning, natural Indonesian, citations, uncertainty, and tone.
 4. Require an additional subject/safety review for health and Dark Library pages.
-5. Mark it `published` only after review; draft and review editions stay out of
-   public routes, search, `hreflang`, and sitemap output.
+5. Publish only after an independent meaning and safety pass. Clearly label
+   AI-assisted editions while native-language editorial review remains open.
 6. Flag the translation as stale whenever its English source revision changes.
 
 The language switcher only links to editions that exist. When a translation is
@@ -111,24 +112,22 @@ English prose under an Indonesian URL.
 - Namespace temporary query state by locale, such as
   `open-human:search-query:id`.
 
-### Pilot scope and release gate
+### Initial scope and release gate
 
-The first Indonesian pilot covers the complete interface plus `sleep`,
-`confirmation-bias`, and `manipulation`. These exercise health guidance,
-cognitive terminology, and safety-sensitive content.
+The initial implementation covers the complete interface and all 15 Human 101
+concepts. `sleep`, `confirmation-bias`, and `manipulation` remain the reference
+set for reviewing health guidance, cognitive terminology, and safety-sensitive
+language.
 
-The three pilot concepts may be published individually, but the Indonesian
-Human 101 curriculum is not launched or indexed as a complete path until all 15
-concepts have passed review in v0.3.
-
-v0.2 is complete when all pilot routes render statically, locale switching keeps
-the equivalent concept, metadata alternates are correct, searches return useful
-results in both languages, and a fluent reviewer has approved the Indonesian
-editions.
+v0.2 is technically complete when all routes render statically, locale switching
+keeps the equivalent concept, metadata alternates are correct, and searches
+return useful results in both languages. Native-language approval remains the
+editorial gate tracked in v0.3.
 
 ## v0.3 — Human 101 in Bahasa Indonesia
 
-- Translate and review the remaining 12 foundation concepts in curriculum order.
+- Continue native-language editorial review of all 15 translated concepts in
+  curriculum order and resolve community feedback.
 - Localize About, Methodology, Explore, contribution guidance, and all system UI.
 - Publish and maintain an English–Indonesian terminology glossary.
 - Show translation credits and review dates without exposing private contributor
@@ -137,6 +136,10 @@ editions.
   quality in CI.
 
 ## v0.4 — Audio pilot
+
+Audio implementation is intentionally paused until the text library contains a
+larger, stable body of reviewed content. The team will define a content-volume
+and revision-stability threshold before scheduling this milestone.
 
 Audio is a versioned derivative of reviewed text. It is not generated dynamically
 for each listener.
@@ -177,8 +180,8 @@ audio:
 - Keep playback analytics off by default; aggregate, privacy-preserving metrics
   can be evaluated later.
 
-The pilot includes the same three concepts as the Indonesian pilot, producing
-six reviewed audio editions across `en` and `id`.
+When this milestone is reactivated, pilot concepts will be selected from stable,
+high-value articles in both `en` and `id`; the initial set is not committed yet.
 
 ## v0.5 — Complete foundation audio
 
@@ -215,3 +218,5 @@ six reviewed audio editions across `en` and `id`.
 - Object storage/CDN provider and retention policy.
 - Whether human narration becomes the default for flagship concepts.
 - Whether a podcast feed adds value after in-page listening is established.
+- The amount and revision stability of text content required before audio work
+  begins.

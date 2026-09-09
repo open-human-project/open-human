@@ -1,8 +1,10 @@
 import Link from "next/link";
+import { localizedPath, type Locale } from "@/lib/i18n/config";
 
-export function Logo({ compact = false }: { compact?: boolean }) {
+export function Logo({ locale, compact = false }: { locale: Locale; compact?: boolean }) {
+  const homeLabel = locale === "id" ? "Beranda Open Human" : "Open Human home";
   return (
-    <Link className="brand" href="/" aria-label="Open Human home">
+    <Link className="brand" href={localizedPath(locale)} aria-label={homeLabel}>
       <svg
         className="brand-mark"
         viewBox="0 0 40 40"

@@ -4,15 +4,20 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { Menu } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { localizedPath, type Locale } from "@/lib/i18n/config";
+import type { Dictionary } from "@/lib/i18n/dictionaries";
 
-const navigation = [
-  { href: "/human-101", label: "Human 101" },
-  { href: "/explore", label: "Explore" },
-  { href: "/methodology", label: "Methodology" },
-  { href: "/about", label: "About" },
-];
-
-export function MobileNav({ contributeHref, repositoryConnected }: { contributeHref: string; repositoryConnected: boolean }) {
+export function MobileNav({
+  contributeHref,
+  locale,
+  navigation,
+  repositoryConnected,
+}: {
+  contributeHref: string;
+  locale: Locale;
+  navigation: Dictionary["navigation"];
+  repositoryConnected: boolean;
+}) {
   const detailsRef = useRef<HTMLDetailsElement>(null);
   const pathname = usePathname();
 
@@ -26,13 +31,17 @@ export function MobileNav({ contributeHref, repositoryConnected }: { contributeH
 
   return (
     <details className="mobile-menu" ref={detailsRef}>
-      <summary aria-label="Open menu">
+      <summary aria-label={navigation.menuLabel}>
         <Menu size={20} strokeWidth={1.6} />
       </summary>
       <div className="mobile-menu-panel">
-        <nav aria-label="Mobile navigation">
-          {navigation.map((item, index) => (
-            <Link href={item.href} key={item.href} onClick={closeMenu}>
+        <nav aria-label={navigation.mobileLabel}>
+          {navigation.links.map((item, index) => (
+            <Link
+              href={localizedPath(locale, item.path)}
+              key={item.path}
+              onClick={closeMenu}
+            >
               <span>0{index + 1}</span>
               {item.label}
             </Link>
@@ -44,7 +53,7 @@ export function MobileNav({ contributeHref, repositoryConnected }: { contributeH
             onClick={closeMenu}
           >
             <span>05</span>
-            {repositoryConnected ? "Contribute on GitHub" : "How to contribute"}
+            {repositoryConnected ? navigation.contribute : navigation.howToContribute}
           </a>
         </nav>
       </div>
