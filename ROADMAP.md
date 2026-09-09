@@ -30,7 +30,7 @@ are published editions of that source, not separate knowledge products.
 | --- | --- | --- |
 | v0.1 — Foundation | Editorial site, 15 concepts, evidence model, local search | Shipped |
 | v0.2 — Bilingual foundation | Locale-aware routes, interface dictionaries, localized search | Shipped |
-| v0.3 — Expanded bilingual Human 101 | 30 concepts, six per field, available in `en` and `id`; native-language review remains open | Editorial beta |
+| v0.3 — Expanded bilingual Human 101 | 45 concepts, nine per field, available in `en` and `id`; native-language review remains open | Editorial beta |
 | v0.4 — Audio pilot | A later bilingual listening pilot after the text library grows | Deferred |
 | v0.5 — Complete foundation audio | Broad bilingual audio coverage | Deferred |
 | v1.0 — Community publishing | Governed translation, narration, and review contributions | Future |
@@ -126,9 +126,9 @@ editorial gate tracked in v0.3.
 
 ## v0.3 — Expanded bilingual Human 101
 
-- Maintain 30 source/translation pairs across Body, Mind, Self Awareness, Human
+- Maintain 45 source/translation pairs across Body, Mind, Self Awareness, Human
   Nature, and the Dark Library.
-- Continue native-language editorial review of all 30 translated concepts in
+- Continue native-language editorial review of all 45 translated concepts in
   curriculum order and resolve community feedback.
 - Localize About, Methodology, Explore, contribution guidance, and all system UI.
 - Publish and maintain an English–Indonesian terminology glossary.

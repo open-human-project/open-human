@@ -33,7 +33,7 @@ difficulty: foundational
 evidence_level: A
 confidence: high
 last_reviewed: "2026-09-09"
-human_101_order: 11
+human_101_order: 17
 related: [attention, metacognition]
 sources:
   - title: "Source title"
@@ -76,6 +76,11 @@ it works, a concrete example, misconceptions, practical recognition or response,
 and what remains uncertain. Dark Library topics should end with protective action.
 Use the established Indonesian headings in existing `content/id/` articles rather
 than mixing English headings into an Indonesian edition.
+
+Published concept pages must contain at least 650 words of article prose. This is
+a floor against thin entries, not a target to pad: foundational treatments often
+need roughly 1,000–1,300 words, while clarity, evidence, and useful boundaries
+matter more than length alone.
 
 ## Evidence levels
 

@@ -1,0 +1,118 @@
+---
+locale: id
+translation_of: deceptive-design
+translation_status: published
+source_revision: 1
+translation_method: ai-assisted
+translation_reviewed_at: "2026-09-09"
+title: "Desain Menipu Dapat Melemahkan Pilihan Digital"
+description: "Antarmuka digital dapat melemahkan pilihan yang sadar dengan menyamarkan konsekuensi atau membuat pilihan yang diinginkan penyedia lebih mudah daripada menolak, membatalkan, atau melindungi privasi."
+category: dark-library
+tags:
+  - desain-menipu
+  - perlindungan-konsumen
+  - privasi
+  - arsitektur-pilihan
+aliases:
+  - "Apa itu dark pattern?"
+  - "Mengapa membatalkan layanan begitu sulit?"
+  - "Bisakah antarmuka memanipulasi pilihan?"
+  - "desain manipulatif"
+difficulty: foundational
+evidence_level: B
+confidence: high
+last_reviewed: "2026-09-09"
+human_101_order: 39
+related:
+  - manipulation
+  - scams-and-social-engineering
+  - attention
+  - habits-and-context
+sources:
+  - title: "The Dark (Patterns) Side of UX Design"
+    author: "Colin M. Gray, Yubo Kou, Bryan Battles, Joseph Hoggatt, and Austin L. Toombs"
+    publisher: "Proceedings of the 2018 CHI Conference on Human Factors in Computing Systems"
+    year: 2018
+    url: "https://doi.org/10.1145/3173574.3174108"
+  - title: "Dark Patterns at Scale: Findings from a Crawl of 11K Shopping Websites"
+    author: "Arunesh Mathur et al."
+    publisher: "Proceedings of the ACM on Human-Computer Interaction"
+    year: 2019
+    url: "https://doi.org/10.1145/3359183"
+  - title: "Shining a Light on Dark Patterns"
+    author: "Jamie Luguri and Lior Jacob Strahilevitz"
+    publisher: "Journal of Legal Analysis"
+    year: 2021
+    url: "https://doi.org/10.1093/jla/laaa006"
+  - title: "Bringing Dark Patterns to Light"
+    author: "Federal Trade Commission"
+    publisher: "Federal Trade Commission"
+    year: 2022
+    url: "https://www.ftc.gov/reports/bringing-dark-patterns-light"
+  - title: "Dark Commercial Patterns"
+    author: "Organisation for Economic Co-operation and Development"
+    publisher: "OECD Digital Economy Papers"
+    year: 2022
+    url: "https://doi.org/10.1787/44f5e846-en"
+---
+
+## Ringkasnya
+
+Desain menipu adalah pilihan pada antarmuka yang merusak atau melemahkan kemampuan pengguna untuk membuat keputusan secara sadar dan sukarela. Sebuah layar mungkin menonjolkan persetujuan sambil menyembunyikan penolakan, baru menunjukkan biaya wajib setelah pengguna mencurahkan banyak upaya, mengubah masa coba menjadi tagihan berulang tanpa pemberitahuan memadai, atau membuat pembatalan jauh lebih sulit daripada pendaftaran. Pengaruhnya bukan hanya berasal dari isi tulisan, tetapi juga dari tindakan mana yang dibuat terlihat, mudah dipahami, gampang dilakukan, dan dapat dibatalkan.
+
+Semua antarmuka membentuk pilihan, sehingga pilihan bawaan yang jelas atau formulir singkat tidak otomatis menipu. Masalah muncul ketika tujuan wajar pengguna dan rancangan penyedia timpang: informasi disamarkan, kontrol berperilaku di luar dugaan, atau kerepotan membebani pilihan yang melindungi uang, waktu, perhatian, maupun data pengguna.
+
+Ini bukan bukti bahwa pengguna bodoh. Penyedia dapat menguji satu antarmuka berdasarkan jutaan interaksi, menciptakan keunggulan informasi yang sulit ditandingi seorang pengguna sendirian.
+
+## Mengapa ini penting
+
+Keputusan kecil dalam desain dapat menumpuk menjadi pembelian yang tidak diinginkan, biaya berulang, hilangnya privasi, atau waktu yang terbuang untuk membalik suatu pilihan. Kerugian per orang mungkin kecil tetapi menjadi besar pada skala populasi. Dampaknya dapat lebih berat bagi orang yang memakai bahasa kedua, hidup dengan disabilitas, berbagi perangkat, menghadapi keterbatasan uang, atau mengambil keputusan saat lelah dan terdistraksi.
+
+Istilah “dark pattern” berawal dari bahasa praktisi dan masih mencakup praktik dengan mekanisme serta tingkat kerugian yang berbeda. Gray dan rekan menganalisis contoh yang ditandai oleh praktisi desain dan menemukan kekhawatiran etis yang berulang: nilai bagi pengguna dikalahkan oleh nilai bagi organisasi, sementara banyak masalah berbeda dihimpun di bawah satu istilah ([Gray dan rekan](https://doi.org/10.1145/3173574.3174108)). Riwayat ini mendukung pendekatan yang cermat. Sebutkan penghalang atau penipuannya secara konkret, bukan menganggap setiap desain yang merepotkan pasti dibuat dengan niat jahat.
+
+## Cara kerjanya
+
+Antarmuka mengatur perhatian dan tindakan. Penonjolan visual menentukan apa yang pertama kali terlihat. Pilihan kata membentuk cara konsekuensi dipahami. Pilihan bawaan menentukan apa yang terjadi jika pengguna tidak mengubah apa pun. Jumlah serta kesulitan langkah mengubah biaya untuk menerima, menolak, atau membatalkan pilihan. Waktu penyampaian juga penting: informasi yang baru muncul setelah komitmen mungkin secara teknis tersedia tetapi praktis tidak berguna.
+
+Untuk peninjauan defensif, gunakan pertanyaan konkret alih-alih mengandalkan katalog istilah. Dapatkah syarat penting ditemukan dan dipahami sebelum pengguna berkomitmen? Apakah menerima, menolak, dan membatalkan sama-sama mudah dimengerti? Apakah penonjolan visual sebanding dengan konsekuensinya? Apakah kontrol melakukan hal yang secara wajar dijanjikan labelnya? Apakah mengatakan “tidak” benar-benar mengakhiri permintaan? Pemeriksaan ini menggambarkan pengalaman pengguna tanpa menyediakan cetak biru untuk menciptakan jebakan.
+
+Skala membedakan desain digital dari satu percakapan persuasif. Mathur dan rekan mengaudit sekitar 11.000 situs belanja dan mendokumentasikan 1.818 contoh *dark pattern* pada 1.254 situs, sekaligus mengembangkan taksonomi ciri serta kemungkinan pengaruhnya ([Mathur dan rekan](https://doi.org/10.1145/3359183)). Penelusuran situs dapat mengamati antarmuka, tetapi tidak membuktikan niat di balik setiap unsur atau mengukur seluruh kerugian pengguna. Namun, studi itu menunjukkan bahwa masalah ini bukan sekadar kumpulan anekdot langka.
+
+Eksperimen memberi bukti lebih kuat bahwa desain dapat mengubah perilaku. Luguri dan Strahilevitz secara acak memperlihatkan antarmuka dengan pola berbeda kepada peserta dan menemukan bahwa rancangan tersebut dapat meningkatkan pendaftaran pada layanan yang meragukan; desain yang lebih agresif juga memicu reaksi balik dan sikap negatif yang lebih besar ([Luguri dan Strahilevitz](https://doi.org/10.1093/jla/laaa006)). Besarnya pengaruh tidak boleh diterapkan ke setiap produk, tetapi eksperimen ini menunjukkan bahwa antarmuka dapat memengaruhi persetujuan, bukan sekadar menghiasnya.
+
+## Contoh konkret
+
+Bayangkan layanan video menawarkan masa coba satu bulan. Layar pertama menonjolkan tombol “Mulai gratis” dan meminta data pembayaran. Ketentuan perpanjangan ditampilkan dengan penekanan rendah. Mendekati akhir bulan, tidak ada pengingat yang jelas. Saat Maya hendak membatalkan, halaman akun menawarkan beberapa pilihan peningkatan layanan dengan mencolok, sedangkan pembatalan tersembunyi di balik beberapa menu. Setiap langkah menanyakan apakah ia ingin menjeda, menerima potongan harga, atau mempertahankan manfaat; konfirmasi terakhir tampak mirip layar sebelumnya.
+
+Tidak harus ada satu kalimat bohong yang gamblang agar rangkaian itu melemahkan pilihan. Pertanyaan pentingnya adalah apakah perpanjangan dapat dipahami secara wajar, apakah menolak sama mudahnya untuk dimengerti seperti menerima, dan apakah mengakhiri layanan menuntut upaya yang tidak sebanding. Ketidakmampuan Maya menemukan jalurnya dengan cepat bukan bukti bahwa ia telah menyetujui secara bermakna atau kurang cerdas.
+
+Bandingkan dengan layanan yang menyatakan tanggal dan harga perpanjangan di dekat tombol pendaftaran, mengirim pengingat, menempatkan pembatalan di pengaturan langganan yang lazim, dan mengonfirmasi hasilnya dengan jelas. Kedua layanan mungkin sama-sama ingin mempertahankan pelanggan. Hanya satu yang membuat pilihan berbeda dari pengguna menjadi sangat sulit dijalankan.
+
+## Kesalahpahaman umum
+
+- **“Setiap dorongan desain itu menipu.”** Antarmuka selalu mengatur pilihan. Transparansi, keselarasan dengan tujuan pengguna, kemudahan membatalkan, dan kerepotan yang sebanding membantu membedakan bantuan dari penyesatan.
+- **“Jika syaratnya tersedia di suatu tempat, persetujuannya pasti berdasarkan informasi.”** Ketersediaan tidak sama dengan kemudahan melihat dan memahami pada saat keputusan dibuat.
+- **“Hanya orang ceroboh yang terpengaruh.”** Perhatian terbatas, sedangkan penyedia sering memiliki jauh lebih banyak data dan kemampuan pengujian daripada pengguna.
+- **“Desain menipu harus memuat kebohongan.”** Penghilangan, waktu, hierarki visual, pilihan bawaan, dan penghalang dapat melemahkan pilihan tanpa satu kalimat yang secara harfiah palsu.
+- **“Satu taksonomi dapat memutuskan semua kasus.”** Label dan definisi hukum berbeda-beda, sementara konteks menentukan apakah suatu praktik berbahaya atau dapat dibenarkan.
+- **“Solusinya adalah selalu waspada sempurna.”** Kehati-hatian individu membantu, tetapi pilihan bawaan yang adil, kontrol yang mudah diakses, pengawasan, dan standar yang dapat ditegakkan menangani ketimpangan struktural.
+
+## Cara mengenalinya
+
+Berhentilah sejenak ketika tindakan yang membawa konsekuensi jauh lebih mudah dimulai daripada dibatalkan. Perhatikan jumlah pembayaran yang berubah pada tahap akhir, tambahan yang sudah terpilih, waktu perpanjangan yang kabur, kontrol yang penampilan visualnya tidak sebanding dengan akibatnya, serta pilihan privasi yang menyediakan “terima” tetapi tidak menyediakan penolakan yang sama mudah dipahami. Amati apakah mengatakan tidak benar-benar menutup pertanyaan atau hanya memulai permintaan berulang.
+
+Nilailah seluruh rangkaian, bukan satu tangkapan layar. Sebuah layar dapat terlihat jelas sementara urutannya menyembunyikan biaya atau menghalangi jalan keluar. [Laporan staf mengenai dark pattern](https://www.ftc.gov/reports/bringing-dark-patterns-light) dari Federal Trade Commission AS menjelaskan praktik berupa iklan tersamar, pembatalan yang sulit, syarat dan biaya tersembunyi, serta pilihan berbagi data. Contoh hukumnya berasal dari yurisdiksi AS, tetapi pertanyaan untuk mengenalinya dapat dipakai lebih luas.
+
+## Cara melindungi diri
+
+Sebelum melakukan pembelian atau memulai masa coba, catat harga, tanggal perpanjangan, ketentuan pengembalian dana, dan jalur pembatalan jika hal-hal itu penting. Periksa pilihan yang sudah dicentang dan jumlah akhir. Gunakan kontrol izin dari sistem operasi atau peramban jika alur privasi aplikasi membingungkan. Setelah membatalkan, simpan konfirmasi dan periksa laporan transaksi berikutnya. Semua ini adalah kebiasaan pelindung, bukan jaminan dan bukan pemindahan tanggung jawab dari perancang kepada pengguna.
+
+Jika uang atau data diambil bertentangan dengan apa yang secara wajar Anda pahami, dokumentasikan urutannya tanpa mengekspos informasi sensitif. Hubungi penyedia melalui kanal yang telah diverifikasi, lalu pertimbangkan penyedia pembayaran, platform, lembaga perlindungan konsumen, atau otoritas perlindungan data yang berlaku di tempat Anda. Hak dan prosedur berbeda menurut yurisdiksi.
+
+Tinjauan OECD mengenai [pola komersial menipu](https://doi.org/10.1787/44f5e846-en) menekankan bahwa tindakan konsumen saja tidak cukup dan membahas tanggapan dari bisnis, regulator, serta penegak hukum. Perlindungan yang lebih kokoh membuat pilihan bermakna lebih mudah sejak awal, bukan menuntut setiap orang mendeteksi setiap jebakan.
+
+## Hal yang masih belum pasti
+
+Peneliti dan regulator belum memakai satu batas yang sama untuk desain menipu. Niat sulit disimpulkan, sebagian kompromi desain memang sah, dan pilihan bawaan yang sama dapat membantu satu kelompok sambil merugikan kelompok lain. Audit antarmuka lebih mudah menetapkan prevalensi daripada kerugian jangka panjang, sedangkan eksperimen pada satu pilihan belum tentu memprediksi perilaku di budaya, perangkat, atau pasar lain.
+
+Kesimpulan terkuat lebih sempit daripada “semua desain persuasif adalah manipulasi.” Desain dapat secara terukur mengganggu pemahaman atau membuat penolakan terlalu membebani. Penilaian suatu kasus memerlukan bukti tentang seluruh jalur pilihan, pengguna yang terdampak, konsekuensi penting, dan alternatif yang tersedia.

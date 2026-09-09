@@ -18,22 +18,31 @@ import { getDictionary } from "@/lib/i18n/dictionaries";
 import { rankSearchDocuments } from "@/lib/search";
 
 const human101Slugs = [
+  "homeostasis-and-feedback",
   "sleep",
   "energy-balance",
   "hydration",
   "nutrition-patterns",
+  "immune-defense-and-memory",
   "stress-response",
+  "pain-and-protection",
   "exercise-adaptation",
   "perception-is-inference",
   "attention",
+  "working-memory-is-limited",
   "reconstructive-memory",
+  "learning-through-retrieval-and-spacing",
   "emotion-and-judgment",
+  "motivation-is-context-sensitive",
   "confirmation-bias",
   "habits-and-context",
   "event-and-interpretation",
   "emotion-regulation",
   "metacognition",
+  "limits-of-introspection",
+  "self-concept-and-context",
   "reflection-and-rumination",
+  "values-and-tradeoffs",
   "avoidance-and-reinforcement",
   "impulse-action-consequence",
   "social-identity",
@@ -42,11 +51,17 @@ const human101Slugs = [
   "cooperation-and-collective-action",
   "reciprocity",
   "competition",
+  "envy-and-comparison",
+  "attraction-and-compatibility",
+  "jealousy-and-threat",
   "manipulation",
   "scams-and-social-engineering",
+  "deceptive-design",
   "coercive-control",
+  "obedience-to-authority",
   "propaganda",
   "groupthink",
+  "bystander-inhibition",
   "dehumanization",
 ] as const;
 
@@ -68,11 +83,11 @@ describe.each(locales)("%s knowledge library", (locale) => {
     );
   });
 
-  it("keeps six Human 101 concepts in every public category", () => {
+  it("keeps nine Human 101 concepts in every public category", () => {
     const human101 = getHuman101Concepts(locale);
     for (const category of getCategories(locale)) {
-      expect(getConceptsByCategory(locale, category.slug).length).toBeGreaterThanOrEqual(6);
-      expect(human101.filter((concept) => concept.category === category.slug)).toHaveLength(6);
+      expect(getConceptsByCategory(locale, category.slug).length).toBeGreaterThanOrEqual(9);
+      expect(human101.filter((concept) => concept.category === category.slug)).toHaveLength(9);
     }
   });
 
@@ -153,6 +168,21 @@ describe.each([
       ["How can I recognize controlling behavior?", "coercive-control"],
       ["Can misinformation be propaganda?", "propaganda"],
       ["How does dehumanizing language work?", "dehumanization"],
+      ["How does the body stay stable?", "homeostasis-and-feedback"],
+      ["Can supplements boost immunity?", "immune-defense-and-memory"],
+      ["Does more pain mean more damage?", "pain-and-protection"],
+      ["Why am I overwhelmed by multiple steps?", "working-memory-is-limited"],
+      ["How should I study to remember longer?", "learning-through-retrieval-and-spacing"],
+      ["Am I lazy or missing motivation?", "motivation-is-context-sensitive"],
+      ["Can introspection reveal why I acted?", "limits-of-introspection"],
+      ["Why do I act differently in different situations?", "self-concept-and-context"],
+      ["Why do my actions conflict with my values?", "values-and-tradeoffs"],
+      ["Why do I envy other people?", "envy-and-comparison"],
+      ["Is attraction the same as compatibility?", "attraction-and-compatibility"],
+      ["Does jealousy prove someone is unfaithful?", "jealousy-and-threat"],
+      ["Why is it so hard to cancel?", "deceptive-design"],
+      ["Why do people obey authority?", "obedience-to-authority"],
+      ["Why does nobody intervene?", "bystander-inhibition"],
     ],
     groupQuery: "Why do people follow groups?",
     bodyTerm: "adenosine",
@@ -180,6 +210,21 @@ describe.each([
       ["Bagaimana mengenali pasangan yang mengekang?", "coercive-control"],
       ["Apakah hoaks selalu propaganda?", "propaganda"],
       ["Bagaimana ucapan merendahkan kemanusiaan?", "dehumanization"],
+      ["Bagaimana tubuh menjaga kestabilannya?", "homeostasis-and-feedback"],
+      ["Bisakah suplemen meningkatkan sistem imun?", "immune-defense-and-memory"],
+      ["Apakah nyeri berat selalu berarti kerusakan besar?", "pain-and-protection"],
+      ["Mengapa banyak langkah membuat saya kewalahan?", "working-memory-is-limited"],
+      ["Bagaimana belajar agar ingatan bertahan lebih lama?", "learning-through-retrieval-and-spacing"],
+      ["Apakah saya malas atau kehilangan motivasi?", "motivation-is-context-sensitive"],
+      ["Bisakah introspeksi mengungkap alasan tindakan saya?", "limits-of-introspection"],
+      ["Mengapa saya berperilaku berbeda dalam situasi berbeda?", "self-concept-and-context"],
+      ["Mengapa tindakan saya bertentangan dengan nilai saya?", "values-and-tradeoffs"],
+      ["Mengapa saya merasa iri kepada orang lain?", "envy-and-comparison"],
+      ["Apakah ketertarikan sama dengan kecocokan?", "attraction-and-compatibility"],
+      ["Apakah kecemburuan membuktikan ketidaksetiaan?", "jealousy-and-threat"],
+      ["Mengapa membatalkan layanan begitu sulit?", "deceptive-design"],
+      ["Mengapa orang mematuhi otoritas?", "obedience-to-authority"],
+      ["Mengapa tidak ada yang turun tangan?", "bystander-inhibition"],
     ],
     groupQuery: "Mengapa orang mengikuti kelompok?",
     bodyTerm: "adenosin",

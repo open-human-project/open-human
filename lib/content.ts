@@ -184,8 +184,8 @@ function readConcept(filePath: string, expectedLocale: Locale): Concept {
   const text = plainText(content);
   const wordCount = text ? text.split(/\s+/).length : 0;
 
-  if (wordCount < 250) {
-    throw new Error(`${slug}.mdx is too short (${wordCount} words; minimum 250).`);
+  if (wordCount < 650) {
+    throw new Error(`${slug}.mdx is too short (${wordCount} words; minimum 650).`);
   }
 
   return {

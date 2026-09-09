@@ -36,15 +36,15 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
       return concept;
     });
   const featured = selectConcepts([
-    "sleep",
+    "homeostasis-and-feedback",
     "perception-is-inference",
     "event-and-interpretation",
     "social-identity",
   ]);
   const librarySelections = selectConcepts([
-    "nutrition-patterns",
-    "emotion-regulation",
-    "cooperation-and-collective-action",
+    "pain-and-protection",
+    "learning-through-retrieval-and-spacing",
+    "attraction-and-compatibility",
   ]);
   const contributionHref =
     siteConfig.repositoryUrl ?? localizedPath(locale, "/about#contribute");
