@@ -70,6 +70,13 @@ The deployed site should set both values.
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) before proposing knowledge changes.
 
+## Roadmap
+
+The next product track adds locale-aware publishing with Bahasa Indonesia as the
+first language after English, followed by reviewed audio editions for both
+languages. See [ROADMAP.md](./ROADMAP.md) for sequencing, content governance,
+accessibility requirements, and release criteria.
+
 ## License
 
 Open Human uses separate licenses for software and knowledge:

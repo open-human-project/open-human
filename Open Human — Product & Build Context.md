@@ -1408,9 +1408,25 @@ This enables:
 
 # 37. Future Features
 
-Potential future roadmap:
+Living implementation details and release gates are maintained in
+[`ROADMAP.md`](./ROADMAP.md).
 
-### Phase 2
+### Phase 2 — Bilingual Foundation
+
+- locale-aware routes for English (`en`) and Bahasa Indonesia (`id`)
+- translated interface and navigation
+- Indonesian pilot concepts with human editorial review
+- localized search, metadata, sitemap, and language switching
+
+### Phase 3 — Audio Editions
+
+- accessible article audio player
+- reviewed English and Indonesian narration
+- text/audio revision tracking
+- versioned audio assets delivered from object storage/CDN
+- visible transcript and synthetic-narration disclosure
+
+### Phase 4 — Personal Learning
 
 - accounts
 - bookmarks
@@ -1419,7 +1435,7 @@ Potential future roadmap:
 - reflection journal
 - progress through Human 101
 
-### Phase 3
+### Phase 5 — Intelligent Discovery
 
 - semantic search
 - AI knowledge assistant
@@ -1427,15 +1443,15 @@ Potential future roadmap:
 - concept graph visualization
 - source comparison
 
-### Phase 4
+### Phase 6 — Community Publishing
 
 - community contributions
 - peer review
 - expert review
-- translation
-- localization
+- translation and language review workflows
+- human narration contributions and consent
 
-### Phase 5
+### Phase 7 — Distribution
 
 - mobile app
 - offline knowledge
@@ -1574,7 +1590,7 @@ When implementing this project:
 15. When writing factual content, distinguish evidence from interpretation.
 16. Treat uncertainty as a feature, not a weakness.
 17. Build for global users, not only Indonesia.
-18. Use English as the primary content language initially, but structure the system so localization can be added later.
+18. Use English as the initial source language, add Bahasa Indonesia as the first localized edition, and structure every new feature for additional locales.
 19. Optimize for learning and exploration rather than maximizing session time.
 20. The product should feel like a **digital library + knowledge graph + self-awareness toolkit**, not a social media platform.
 
